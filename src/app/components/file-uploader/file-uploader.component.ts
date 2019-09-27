@@ -1,21 +1,33 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
+import { FileManagementService } from 'src/app/services/file-management.service';
 
 @Component({
   selector: 'app-file-uploader',
   templateUrl: './file-uploader.component.html',
   styleUrls: ['./file-uploader.component.scss']
 })
-export class FileUploaderComponent {
+export class FileUploaderComponent implements OnInit, OnDestroy {
   files: any = [];
+  filesSub: Subscription;
 
-  uploadFile(event) {
-    for (let index = 0; index < event.length; index++) {
-      const element = event[index];
-      this.files.push(element.name);
+  constructor(private fileManagementService: FileManagementService) {}
+
+  ngOnInit() {
+    this.filesSub = this.fileManagementService.files.subscribe((files) => (this.files = files));
+  }
+
+  ngOnDestroy() {
+    if (this.filesSub) {
+      this.filesSub.unsubscribe();
     }
   }
 
+  uploadFile(event) {
+    this.fileManagementService.uploadFile(event);
+  }
+
   deleteAttachment(index) {
-    this.files.splice(index, 1);
+    this.fileManagementService.deleteAttachment(index);
   }
 }
