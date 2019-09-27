@@ -13,8 +13,8 @@ export class FileUploaderComponent implements OnInit, OnDestroy {
 
   constructor(private fileManagementService: FileManagementService) {}
 
-  ngOnInit() {
-    this.filesSub = this.fileManagementService.files.subscribe((files) => (this.files = files));
+  async ngOnInit() {
+    this.filesSub = await this.fileManagementService.filesSub.subscribe((files) => (this.files = files));
   }
 
   ngOnDestroy() {
