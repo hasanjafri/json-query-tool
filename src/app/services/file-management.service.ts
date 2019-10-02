@@ -7,11 +7,13 @@ import { BehaviorSubject } from 'rxjs';
 export class FileManagementService {
   files: any = [];
   filesSub: BehaviorSubject<any> = new BehaviorSubject<any>([]);
+  openedFile = {};
 
   uploadFile(event) {
+    console.log(event);
     for (let index = 0; index < event.length; index++) {
       const element = event[index];
-      this.files.push(element.name);
+      this.files.push({ name: element.name, path: element.path });
       this.filesSub.next(this.files);
     }
   }

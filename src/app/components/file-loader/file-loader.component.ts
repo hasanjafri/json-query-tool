@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { FileManagementService } from 'src/app/services/file-management.service';
 
@@ -8,6 +8,8 @@ import { FileManagementService } from 'src/app/services/file-management.service'
   styleUrls: ['./file-loader.component.scss']
 })
 export class FileLoaderComponent implements OnInit, OnDestroy {
+  @Output() fileLoader = new EventEmitter<string>();
+
   files: any = [];
   filesSub: Subscription;
 
@@ -21,5 +23,10 @@ export class FileLoaderComponent implements OnInit, OnDestroy {
     if (this.filesSub) {
       this.filesSub.unsubscribe();
     }
+  }
+
+  loadFile(filePath) {
+    console.log(filePath);
+    this.fileLoader.emit(filePath);
   }
 }

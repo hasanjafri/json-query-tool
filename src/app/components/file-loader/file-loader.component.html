@@ -1,1 +1,5 @@
-<p>file-loader works!</p>
+<mat-list role="list">
+  <mat-list-item class="listitem" *ngFor="let file of files" role="listitem" (click)="loadFile(file.path)">
+    {{ file.name }}
+  </mat-list-item>
+</mat-list>

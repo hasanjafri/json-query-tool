@@ -1,6 +1,6 @@
 <mat-drawer-container class="example-container">
   <mat-drawer mode="side" opened>
-    <app-file-loader></app-file-loader>
+    <app-file-loader (fileLoader)="loadFile($event)"></app-file-loader>
   </mat-drawer>
   <mat-drawer-content>
     <app-json-viewer></app-json-viewer>

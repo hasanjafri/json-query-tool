@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
+import { MatListModule } from '@angular/material/list';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { BrowserModule } from '@angular/platform-browser';
@@ -9,12 +10,19 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FileLoaderComponent } from './components/file-loader/file-loader.component';
 import { FileUploaderComponent } from './components/file-uploader/file-uploader.component';
+import { JsonQueryContainerComponent } from './components/json-query-container/json-query-container.component';
 import { JsonViewerComponent } from './components/json-viewer/json-viewer.component';
 import { DragDropDirective } from './directives/drag-drop.directive';
-import { JsonQueryContainerComponent } from './components/json-query-container/json-query-container.component';
 
 @NgModule({
-  declarations: [AppComponent, DragDropDirective, FileUploaderComponent, JsonViewerComponent, FileLoaderComponent, JsonQueryContainerComponent],
+  declarations: [
+    AppComponent,
+    DragDropDirective,
+    FileUploaderComponent,
+    JsonViewerComponent,
+    FileLoaderComponent,
+    JsonQueryContainerComponent
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -22,7 +30,8 @@ import { JsonQueryContainerComponent } from './components/json-query-container/j
     MatToolbarModule,
     MatButtonModule,
     NgxJsonViewerModule,
-    MatSidenavModule
+    MatSidenavModule,
+    MatListModule
   ],
   providers: [],
   bootstrap: [AppComponent]

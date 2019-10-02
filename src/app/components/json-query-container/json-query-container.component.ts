@@ -6,10 +6,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./json-query-container.component.scss']
 })
 export class JsonQueryContainerComponent implements OnInit {
+  constructor() {}
 
-  constructor() { }
+  ngOnInit() {}
 
-  ngOnInit() {
+  loadFile(event) {
+    console.log(event);
   }
-
 }
