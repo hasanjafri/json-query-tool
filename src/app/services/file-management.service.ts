@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 
@@ -8,6 +9,8 @@ export class FileManagementService {
   files: any = [];
   filesSub: BehaviorSubject<any> = new BehaviorSubject<any>([]);
   openedFile = {};
+
+  constructor(private http: HttpClient) {}
 
   uploadFile(event) {
     console.log(event);
@@ -21,5 +24,9 @@ export class FileManagementService {
   deleteAttachment(index) {
     this.files.splice(index, 1);
     this.filesSub.next(this.files);
+  }
+
+  loadFile(filePath) {
+    this.http.get(filePath).subscribe((json) => (this.openedFile = json));
   }
 }
