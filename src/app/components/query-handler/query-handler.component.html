@@ -1,4 +1,4 @@
 <div class="query-container">
-  <input placeholder="Enter json query here..." />
-  <button mat-button color="primary">Query</button>
+  <input #queryInput placeholder="Enter json query here..." />
+  <button mat-button color="primary" (click)="queryJson(queryInput.value)">Query</button>
 </div>

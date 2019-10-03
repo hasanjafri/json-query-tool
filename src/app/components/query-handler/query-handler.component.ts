@@ -5,4 +5,8 @@ import { Component } from '@angular/core';
   templateUrl: './query-handler.component.html',
   styleUrls: ['./query-handler.component.scss']
 })
-export class QueryHandlerComponent {}
+export class QueryHandlerComponent {
+  queryJson(queryExpr: string) {
+    console.log(queryExpr);
+  }
+}
