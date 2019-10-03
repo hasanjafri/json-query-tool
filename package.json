@@ -10,7 +10,8 @@
     "lint": "ng lint",
     "e2e": "ng e2e",
     "electron": "electron .",
-    "electron-build": "ng build --prod && npm run electron ."
+    "electron-build": "ng build --prod && npm run electron .",
+    "build:windows": "electron-packager . — platform=win32"
   },
   "private": true,
   "dependencies": {
