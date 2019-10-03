@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
+import { JsonQueryService } from './json-query.service';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +12,7 @@ export class FileManagementService {
   openedFile = {};
   queriedData = {};
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private jsonQueryService: JsonQueryService) {}
 
   uploadFile(event) {
     console.log(event);
@@ -36,5 +37,10 @@ export class FileManagementService {
 
   resetQueries() {
     this.queriedData = this.openedFile;
+  }
+
+  queryJson(queryExpr: string) {
+    this.queriedData = this.jsonQueryService.query(this.queriedData, queryExpr);
+    console.log('>>>>>', this.queriedData);
   }
 }

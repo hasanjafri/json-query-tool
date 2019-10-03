@@ -1,6 +1,6 @@
 <div *ngIf="(fileManagementService.queriedData | json) == '{}'">Please open a JSON file to continue</div>
 <ngx-json-viewer
   *ngIf="(fileManagementService.queriedData | json) != '{}'"
-  [json]="fileManagementService.openedFile"
-  [expanded]="false"
+  [json]="fileManagementService.queriedData"
+  [expanded]="true"
 ></ngx-json-viewer>
