@@ -9,16 +9,15 @@ import { QueryHandlerComponent } from '../components/query-handler/query-handler
 export class OverlayService {
   constructor(private overlay: Overlay) {}
 
-  open(elementRef) {
+  open() {
     const overlayRef = this.overlay.create({
-      width: '300px',
-      height: '200px',
       positionStrategy: this.overlay
         .position()
-        .connectedTo(elementRef, { originX: 'start', originY: 'bottom' }, { overlayX: 'start', overlayY: 'top' }),
+        .global()
+        .centerHorizontally()
+        .centerVertically(),
       hasBackdrop: true,
       backdropClass: 'dark-backdrop',
-      panelClass: 'tm-file-preview-dialog-panel',
       scrollStrategy: this.overlay.scrollStrategies.block()
     });
     const queryHandlerPortal = new ComponentPortal(QueryHandlerComponent);

@@ -20,6 +20,6 @@ export class AppComponent {
   }
 
   queryData() {
-    this.overlayService.open(this.queryButton);
+    this.overlayService.open();
   }
 }
