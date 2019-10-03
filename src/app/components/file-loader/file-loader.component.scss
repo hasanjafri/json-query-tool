@@ -1,4 +1,6 @@
 .listitem {
+  border-bottom: 1px solid black;
+
   &:hover {
     cursor: pointer;
   }

@@ -9,6 +9,7 @@ export class FileManagementService {
   files: any = [];
   filesSub: BehaviorSubject<any> = new BehaviorSubject<any>([]);
   openedFile = {};
+  queriedData = {};
 
   constructor(private http: HttpClient) {}
 
@@ -27,6 +28,13 @@ export class FileManagementService {
   }
 
   loadFile(filePath) {
-    this.http.get(filePath).subscribe((json) => (this.openedFile = json));
+    this.http.get(filePath).subscribe((json) => {
+      this.openedFile = json;
+      this.queriedData = json;
+    });
+  }
+
+  resetQueries() {
+    this.queriedData = this.openedFile;
   }
 }
