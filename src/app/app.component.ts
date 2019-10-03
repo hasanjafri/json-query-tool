@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { FileManagementService } from './services/file-management.service';
+import { OverlayService } from './services/overlay.service';
 
 @Component({
   selector: 'app-root',
@@ -8,11 +9,17 @@ import { FileManagementService } from './services/file-management.service';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
+  @ViewChild('queryButton', { static: false }) queryButton: ElementRef;
+
   title = 'json-query-tool';
 
-  constructor(private fileManagementService: FileManagementService, public router: Router) {}
+  constructor(private fileManagementService: FileManagementService, public router: Router, private overlayService: OverlayService) {}
 
   resetQueries() {
     this.fileManagementService.resetQueries();
+  }
+
+  queryData() {
+    this.overlayService.open(this.queryButton);
   }
 }

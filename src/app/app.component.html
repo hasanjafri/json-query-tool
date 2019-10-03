@@ -1,7 +1,9 @@
 <mat-toolbar>
   <button mat-button color="primary" routerLink="/jsonQueryTool">JSON Query Tool</button>
   <button class="navbar-item" mat-button color="secondary" routerLink="/uploadJson">Upload JSON Files</button>
-  <button class="navbar-item" mat-button color="secondary" [disabled]="router.url !== '/jsonQueryTool'">Query JSON Data</button>
+  <button #queryButton class="navbar-item" mat-button color="secondary" [disabled]="router.url !== '/jsonQueryTool'" (click)="queryData()">
+    Query JSON Data
+  </button>
   <button class="navbar-item" mat-button color="secondary" (click)="resetQueries()" [disabled]="router.url !== '/jsonQueryTool'">
     Reset All Queries
   </button>
