@@ -1,4 +1,52 @@
 <div class="query-container">
-  <input #queryInput placeholder="Enter json query here..." />
+  <table>
+    <thead>
+      <tr>
+        <th align="left">Operator</th>
+        <th align="left">Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td align="left"><code>$</code></td>
+        <td align="left">The root element to query. This starts all path expressions.</td>
+      </tr>
+      <tr>
+        <td align="left"><code>@</code></td>
+        <td align="left">The current node being processed by a filter predicate.</td>
+      </tr>
+      <tr>
+        <td align="left"><code>*</code></td>
+        <td align="left">Wildcard. Available anywhere a name or numeric are required.</td>
+      </tr>
+      <tr>
+        <td align="left"><code>..</code></td>
+        <td align="left">Deep scan. Available anywhere a name is required.</td>
+      </tr>
+      <tr>
+        <td align="left"><code>.&lt;name&gt;</code></td>
+        <td align="left">Dot-notated child</td>
+      </tr>
+      <tr>
+        <td align="left"><code>['&lt;name&gt;' (, '&lt;name&gt;')]</code></td>
+        <td align="left">Bracket-notated child or children</td>
+      </tr>
+      <tr>
+        <td align="left"><code>[&lt;number&gt; (, &lt;number&gt;)]</code></td>
+        <td align="left">Array index or indexes</td>
+      </tr>
+      <tr>
+        <td align="left"><code>[start:end]</code></td>
+        <td align="left">Array slice operator</td>
+      </tr>
+      <tr>
+        <td align="left"><code>[?(&lt;expression&gt;)]</code></td>
+        <td align="left">Filter expression. Expression must evaluate to a boolean value.</td>
+      </tr>
+    </tbody>
+  </table>
+  <mat-form-field>
+    <textarea #queryInput matInput placeholder="Enter json query here"></textarea>
+  </mat-form-field>
   <button mat-button color="primary" (click)="queryJson(queryInput.value)">Query</button>
 </div>

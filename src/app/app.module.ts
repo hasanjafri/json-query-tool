@@ -16,6 +16,8 @@ import { JsonQueryContainerComponent } from './components/json-query-container/j
 import { JsonViewerComponent } from './components/json-viewer/json-viewer.component';
 import { QueryHandlerComponent } from './components/query-handler/query-handler.component';
 import { DragDropDirective } from './directives/drag-drop.directive';
+import {MatInputModule} from '@angular/material/input';
+
 
 @NgModule({
   declarations: [
@@ -37,7 +39,8 @@ import { DragDropDirective } from './directives/drag-drop.directive';
     MatSidenavModule,
     MatListModule,
     HttpClientModule,
-    OverlayModule
+    OverlayModule,
+    MatInputModule
   ],
   providers: [],
   bootstrap: [AppComponent],
