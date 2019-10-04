@@ -2,6 +2,7 @@ import { OverlayModule } from '@angular/cdk/overlay';
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
+import { MatInputModule } from '@angular/material/input';
 import { MatListModule } from '@angular/material/list';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -15,9 +16,8 @@ import { FileUploaderComponent } from './components/file-uploader/file-uploader.
 import { JsonQueryContainerComponent } from './components/json-query-container/json-query-container.component';
 import { JsonViewerComponent } from './components/json-viewer/json-viewer.component';
 import { QueryHandlerComponent } from './components/query-handler/query-handler.component';
+import { WarningDialogComponent } from './components/warning-dialog/warning-dialog.component';
 import { DragDropDirective } from './directives/drag-drop.directive';
-import {MatInputModule} from '@angular/material/input';
-
 
 @NgModule({
   declarations: [
@@ -27,7 +27,8 @@ import {MatInputModule} from '@angular/material/input';
     JsonViewerComponent,
     FileLoaderComponent,
     JsonQueryContainerComponent,
-    QueryHandlerComponent
+    QueryHandlerComponent,
+    WarningDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -44,6 +45,6 @@ import {MatInputModule} from '@angular/material/input';
   ],
   providers: [],
   bootstrap: [AppComponent],
-  entryComponents: [QueryHandlerComponent]
+  entryComponents: [QueryHandlerComponent, WarningDialogComponent]
 })
 export class AppModule {}

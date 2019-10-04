@@ -11,6 +11,7 @@ export class FileManagementService {
   filesSub: BehaviorSubject<any> = new BehaviorSubject<any>([]);
   openedFile = {};
   queriedData = {};
+  openedFilePath = '';
 
   constructor(private http: HttpClient, private jsonQueryService: JsonQueryService) {}
 
@@ -24,6 +25,11 @@ export class FileManagementService {
   }
 
   deleteAttachment(index) {
+    if (this.files[index].path === this.openedFilePath) {
+      this.openedFile = {};
+      this.queriedData = {};
+      this.openedFilePath = '';
+    }
     this.files.splice(index, 1);
     this.filesSub.next(this.files);
   }
@@ -32,6 +38,7 @@ export class FileManagementService {
     this.http.get(filePath).subscribe((json) => {
       this.openedFile = json;
       this.queriedData = json;
+      this.openedFilePath = filePath;
     });
   }
 
