@@ -1,7 +1,6 @@
 import { Overlay } from '@angular/cdk/overlay';
 import { ComponentPortal } from '@angular/cdk/portal';
 import { Injectable } from '@angular/core';
-import { QueryHandlerComponent } from '../components/query-handler/query-handler.component';
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +8,7 @@ import { QueryHandlerComponent } from '../components/query-handler/query-handler
 export class OverlayService {
   constructor(private overlay: Overlay) {}
 
-  open() {
+  open(overlayType) {
     const overlayRef = this.overlay.create({
       positionStrategy: this.overlay
         .position()
@@ -20,7 +19,7 @@ export class OverlayService {
       backdropClass: 'dark-backdrop',
       scrollStrategy: this.overlay.scrollStrategies.block()
     });
-    const queryHandlerPortal = new ComponentPortal(QueryHandlerComponent);
+    const queryHandlerPortal = new ComponentPortal(overlayType);
     overlayRef.backdropClick().subscribe(() => overlayRef.dispose());
     overlayRef.attach(queryHandlerPortal);
   }

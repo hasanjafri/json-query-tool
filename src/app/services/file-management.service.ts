@@ -1,7 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
+import { WarningDialogComponent } from '../components/warning-dialog/warning-dialog.component';
 import { JsonQueryService } from './json-query.service';
+import { OverlayService } from './overlay.service';
+var isEqual = require('lodash.isequal');
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +16,7 @@ export class FileManagementService {
   queriedData = {};
   openedFilePath = '';
 
-  constructor(private http: HttpClient, private jsonQueryService: JsonQueryService) {}
+  constructor(private http: HttpClient, private jsonQueryService: JsonQueryService, private overlayService: OverlayService) {}
 
   uploadFile(event) {
     console.log(event);
@@ -43,7 +46,9 @@ export class FileManagementService {
   }
 
   resetQueries() {
-    this.queriedData = this.openedFile;
+    if (!isEqual(this.queriedData, this.openedFile)) {
+      this.overlayService.open(WarningDialogComponent);
+    }
   }
 
   queryJson(queryExpr: string) {

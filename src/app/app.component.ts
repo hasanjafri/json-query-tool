@@ -1,5 +1,6 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
+import { QueryHandlerComponent } from './components/query-handler/query-handler.component';
 import { FileManagementService } from './services/file-management.service';
 import { OverlayService } from './services/overlay.service';
 
@@ -20,6 +21,6 @@ export class AppComponent {
   }
 
   queryData() {
-    this.overlayService.open();
+    this.overlayService.open(QueryHandlerComponent);
   }
 }
