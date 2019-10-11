@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable, OnDestroy } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { BehaviorSubject, Subscription } from 'rxjs';
 import { WarningDialogComponent } from '../components/warning-dialog/warning-dialog.component';
 import { JsonQueryService } from './json-query.service';
@@ -9,7 +9,7 @@ var isEqual = require('lodash.isequal');
 @Injectable({
   providedIn: 'root'
 })
-export class FileManagementService implements OnDestroy {
+export class FileManagementService {
   files: any = [];
   filesSub: BehaviorSubject<any> = new BehaviorSubject<any>([]);
   openedFile = {};
@@ -18,12 +18,6 @@ export class FileManagementService implements OnDestroy {
   decisionSub: Subscription;
 
   constructor(private http: HttpClient, private jsonQueryService: JsonQueryService, private overlayService: OverlayService) {}
-
-  ngOnDestroy() {
-    if (this.decisionSub) {
-      this.decisionSub.unsubscribe();
-    }
-  }
 
   uploadFile(event) {
     for (let index = 0; index < event.length; index++) {
@@ -57,6 +51,7 @@ export class FileManagementService implements OnDestroy {
       this.decisionSub = this.overlayService.decisionSub.subscribe((decision) => {
         if (decision) {
           this.queriedData = this.openedFile;
+          this.decisionSub.unsubscribe();
         }
       });
     }

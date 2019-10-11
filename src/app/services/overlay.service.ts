@@ -31,7 +31,10 @@ export class OverlayService {
     });
     const injectionData = overlayProps ? this.createInjector(overlayProps) : null;
     const queryHandlerPortal = new ComponentPortal(overlayType, null, injectionData);
-    overlayRef.backdropClick().subscribe(() => overlayRef.detach());
+    overlayRef.backdropClick().subscribe(() => {
+      this.decisionSub.next(false);
+      overlayRef.detach();
+    });
     const componentRef: ComponentRef<any> = overlayRef.attach(queryHandlerPortal);
     if (componentRef.instance.decisionEmitter) {
       componentRef.instance.decisionEmitter.subscribe((decision) => {
