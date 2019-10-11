@@ -1,5 +1,5 @@
 <div class="warning-container">
-  <h3>{{ warningText }}</h3>
-  <button mat-button color="primary">Yes</button>
-  <button mat-button color="secondary">No</button>
+  <h3>{{ overlayProps.warningText }}</h3>
+  <button mat-button color="primary" (click)="yes()">Yes</button>
+  <button mat-button color="secondary" (click)="no()">No</button>
 </div>

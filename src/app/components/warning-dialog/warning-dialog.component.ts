@@ -1,4 +1,5 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Inject, Output } from '@angular/core';
+import { OVERLAY_DATA } from 'src/app/config/overlay.config';
 
 @Component({
   selector: 'app-warning-dialog',
@@ -6,5 +7,15 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./warning-dialog.component.scss']
 })
 export class WarningDialogComponent {
-  @Input() warningText: string;
+  @Output() decisionEmitter = new EventEmitter<boolean>();
+
+  constructor(@Inject(OVERLAY_DATA) public overlayProps) {}
+
+  yes() {
+    this.decisionEmitter.emit(true);
+  }
+
+  no() {
+    this.decisionEmitter.emit(false);
+  }
 }

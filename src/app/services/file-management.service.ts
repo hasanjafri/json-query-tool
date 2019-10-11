@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { Injectable, OnDestroy } from '@angular/core';
+import { BehaviorSubject, Subscription } from 'rxjs';
 import { WarningDialogComponent } from '../components/warning-dialog/warning-dialog.component';
 import { JsonQueryService } from './json-query.service';
 import { OverlayService } from './overlay.service';
@@ -9,14 +9,21 @@ var isEqual = require('lodash.isequal');
 @Injectable({
   providedIn: 'root'
 })
-export class FileManagementService {
+export class FileManagementService implements OnDestroy {
   files: any = [];
   filesSub: BehaviorSubject<any> = new BehaviorSubject<any>([]);
   openedFile = {};
   queriedData = {};
   openedFilePath = '';
+  decisionSub: Subscription;
 
   constructor(private http: HttpClient, private jsonQueryService: JsonQueryService, private overlayService: OverlayService) {}
+
+  ngOnDestroy() {
+    if (this.decisionSub) {
+      this.decisionSub.unsubscribe();
+    }
+  }
 
   uploadFile(event) {
     console.log(event);
@@ -47,7 +54,12 @@ export class FileManagementService {
 
   resetQueries() {
     if (!isEqual(this.queriedData, this.openedFile)) {
-      this.overlayService.open(WarningDialogComponent);
+      this.overlayService.open(WarningDialogComponent, { warningText: 'Are you sure you want to reset ALL queries?' });
+      this.decisionSub = this.overlayService.decisionSub.subscribe((decision) => {
+        if (decision) {
+          this.queriedData = this.openedFile;
+        }
+      });
     }
   }
 
