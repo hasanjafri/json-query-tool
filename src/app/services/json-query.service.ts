@@ -6,8 +6,6 @@ import jp from 'jsonpath';
 })
 export class JsonQueryService {
   query(jsonData, queryExpr) {
-    console.log(jsonData, queryExpr);
-    console.log(jp.query(jsonData, queryExpr));
     return jp.query(jsonData, queryExpr);
   }
 }

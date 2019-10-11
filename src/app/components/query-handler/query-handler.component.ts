@@ -10,7 +10,6 @@ export class QueryHandlerComponent {
   constructor(private fileManagementService: FileManagementService) {}
 
   queryJson(queryExpr: string) {
-    console.log(queryExpr);
     this.fileManagementService.queryJson(queryExpr);
   }
 }

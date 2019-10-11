@@ -26,7 +26,6 @@ export class FileManagementService implements OnDestroy {
   }
 
   uploadFile(event) {
-    console.log(event);
     for (let index = 0; index < event.length; index++) {
       const element = event[index];
       this.files.push({ name: element.name, path: element.path });
@@ -65,6 +64,5 @@ export class FileManagementService implements OnDestroy {
 
   queryJson(queryExpr: string) {
     this.queriedData = this.jsonQueryService.query(this.queriedData, queryExpr);
-    console.log('>>>>>', this.queriedData);
   }
 }

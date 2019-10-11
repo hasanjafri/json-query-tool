@@ -26,7 +26,6 @@ export class FileLoaderComponent implements OnInit, OnDestroy {
   }
 
   loadFile(filePath) {
-    console.log(filePath);
     this.fileLoader.emit(filePath);
   }
 }

@@ -30,9 +30,7 @@ export class OverlayService {
       scrollStrategy: this.overlay.scrollStrategies.block()
     });
     const injectionData = overlayProps ? this.createInjector(overlayProps) : null;
-    console.log(injectionData);
     const queryHandlerPortal = new ComponentPortal(overlayType, null, injectionData);
-    console.log(queryHandlerPortal);
     overlayRef.backdropClick().subscribe(() => overlayRef.detach());
     const componentRef: ComponentRef<any> = overlayRef.attach(queryHandlerPortal);
     if (componentRef.instance.decisionEmitter) {
