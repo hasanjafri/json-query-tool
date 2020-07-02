@@ -8,9 +8,8 @@ describe('JsonQueryContainerComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ JsonQueryContainerComponent ]
-    })
-    .compileComponents();
+      declarations: [JsonQueryContainerComponent]
+    }).compileComponents();
   }));
 
   beforeEach(() => {

@@ -29,13 +29,21 @@ export class OverlayService {
       backdropClass: 'dark-backdrop',
       scrollStrategy: this.overlay.scrollStrategies.block()
     });
-    const injectionData = overlayProps ? this.createInjector(overlayProps) : null;
-    const queryHandlerPortal = new ComponentPortal(overlayType, null, injectionData);
+    const injectionData = overlayProps
+      ? this.createInjector(overlayProps)
+      : null;
+    const queryHandlerPortal = new ComponentPortal(
+      overlayType,
+      null,
+      injectionData
+    );
     overlayRef.backdropClick().subscribe(() => {
       this.decisionSub.next(false);
       overlayRef.detach();
     });
-    const componentRef: ComponentRef<any> = overlayRef.attach(queryHandlerPortal);
+    const componentRef: ComponentRef<any> = overlayRef.attach(
+      queryHandlerPortal
+    );
     if (componentRef.instance.decisionEmitter) {
       componentRef.instance.decisionEmitter.subscribe((decision) => {
         this.decisionSub.next(decision);

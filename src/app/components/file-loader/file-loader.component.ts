@@ -1,4 +1,10 @@
-import { Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  OnDestroy,
+  OnInit,
+  Output
+} from '@angular/core';
 import { Subscription } from 'rxjs';
 import { FileManagementService } from 'src/app/services/file-management.service';
 
@@ -16,7 +22,9 @@ export class FileLoaderComponent implements OnInit, OnDestroy {
   constructor(private fileManagementService: FileManagementService) {}
 
   async ngOnInit() {
-    this.filesSub = await this.fileManagementService.filesSub.subscribe((files) => (this.files = files));
+    this.filesSub = await this.fileManagementService.filesSub.subscribe(
+      (files) => (this.files = files)
+    );
   }
 
   ngOnDestroy() {

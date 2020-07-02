@@ -14,7 +14,11 @@ export class AppComponent {
 
   title = 'json-query-tool';
 
-  constructor(public fileManagementService: FileManagementService, public router: Router, private overlayService: OverlayService) {}
+  constructor(
+    public fileManagementService: FileManagementService,
+    public router: Router,
+    private overlayService: OverlayService
+  ) {}
 
   resetQueries() {
     this.fileManagementService.resetQueries();

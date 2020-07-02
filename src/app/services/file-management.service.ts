@@ -4,7 +4,7 @@ import { BehaviorSubject, Subscription } from 'rxjs';
 import { WarningDialogComponent } from '../components/warning-dialog/warning-dialog.component';
 import { JsonQueryService } from './json-query.service';
 import { OverlayService } from './overlay.service';
-var isEqual = require('lodash.isequal');
+import isEqual from 'lodash.isequal';
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +17,11 @@ export class FileManagementService {
   openedFilePath = '';
   decisionSub: Subscription;
 
-  constructor(private http: HttpClient, private jsonQueryService: JsonQueryService, private overlayService: OverlayService) {}
+  constructor(
+    private http: HttpClient,
+    private jsonQueryService: JsonQueryService,
+    private overlayService: OverlayService
+  ) {}
 
   uploadFile(event) {
     for (let index = 0; index < event.length; index++) {
@@ -47,13 +51,17 @@ export class FileManagementService {
 
   resetQueries() {
     if (!isEqual(this.queriedData, this.openedFile)) {
-      this.overlayService.open(WarningDialogComponent, { warningText: 'Are you sure you want to reset ALL queries?' });
-      this.decisionSub = this.overlayService.decisionSub.subscribe((decision) => {
-        if (decision) {
-          this.queriedData = this.openedFile;
-          this.decisionSub.unsubscribe();
-        }
+      this.overlayService.open(WarningDialogComponent, {
+        warningText: 'Are you sure you want to reset ALL queries?'
       });
+      this.decisionSub = this.overlayService.decisionSub.subscribe(
+        (decision) => {
+          if (decision) {
+            this.queriedData = this.openedFile;
+            this.decisionSub.unsubscribe();
+          }
+        }
+      );
     }
   }
 

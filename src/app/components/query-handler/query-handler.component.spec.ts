@@ -8,9 +8,8 @@ describe('QueryHandlerComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ QueryHandlerComponent ]
-    })
-    .compileComponents();
+      declarations: [QueryHandlerComponent]
+    }).compileComponents();
   }));
 
   beforeEach(() => {

@@ -1,0 +1,6 @@
+package.json
+package-lock.json
+dist
+e2e
+json-query-tool-win32-x64
+node_modules
